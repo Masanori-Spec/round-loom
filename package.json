@@ -1,0 +1,24 @@
+{
+  "name": "round-loom",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local, auditable table rotations for small adult workshops",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "round-loom": "src/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "check": "node scripts/check-syntax.mjs && npm test && npm run build && node scripts/check-dist.mjs",
+    "test:browser": "node tests/browser/browser-test.mjs",
+    "package": "node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.0"
+  }
+}

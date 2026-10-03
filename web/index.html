@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      name="description"
+      content="Local, auditable rotations for small adult workshops"
+    />
+    <title>Round Loom · つながりを編む席替え</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to planner / プランへ</a>
+    <header class="top">
+      <a class="brand" href="./" aria-label="Round Loom home"
+        ><span class="mark" aria-hidden="true">✳</span>Round Loom</a
+      >
+      <div class="top-actions">
+        <span class="local-pill" data-i="local">LOCAL · 通信なし</span
+        ><button id="lang" class="quiet">English</button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div>
+          <p class="eyebrow" data-i="eyebrow">SMALL GROUPS, MORE CONNECTIONS</p>
+          <h1 data-i="heading">席をめぐって、<br />つながりを編む。</h1>
+          <p class="lead" data-i="lead">
+            小さな大人のワークショップのための席替えプラン。終わったラウンドを残して、これからの出会いを組み直す。
+          </p>
+          <div class="hero-tags">
+            <span data-i="tag1">4–24の匿名ラベル</span
+            ><span data-i="tag2">2–6テーブル</span
+            ><span data-i="tag3">1–6ラウンド</span>
+          </div>
+        </div>
+        <div class="loom" aria-hidden="true">
+          <div class="orbit o1"></div>
+          <div class="orbit o2"></div>
+          <div class="orbit o3"></div>
+          <span class="dot d1">01</span><span class="dot d2">02</span
+          ><span class="dot d3">03</span><span class="dot d4">04</span
+          ><span class="dot d5">05</span><span class="dot d6">06</span>
+          <div class="loom-label">MEET.<br />MOVE.<br />REPEAT LESS.</div>
+        </div>
+      </section>
+      <div class="workspace">
+        <section class="panel setup" aria-labelledby="setup-title">
+          <div class="section-label">01 / SETUP</div>
+          <h2 id="setup-title" data-i="setup">今回のワークショップ</h2>
+          <p class="small muted" data-i="privacy">
+            成人向けの架空ラベルだけを使用。アカウント不要・自動保存なし。タブを閉じる前にJSONを保存してください。
+          </p>
+          <form id="planner-form">
+            <label for="people" data-i="people">参加者ラベル（1行に1人）</label
+            ><textarea id="people" rows="7" spellcheck="false">
+P01
+P02
+P03
+P04
+P05
+P06
+P07
+P08
+P09</textarea
+            >
+            <div class="field-row">
+              <div>
+                <label for="tables" data-i="tables">テーブル数</label
+                ><input
+                  id="tables"
+                  type="number"
+                  min="2"
+                  max="6"
+                  value="3"
+                  required
+                />
+              </div>
+              <div>
+                <label for="rounds" data-i="rounds">ラウンド数</label
+                ><input
+                  id="rounds"
+                  type="number"
+                  min="1"
+                  max="6"
+                  value="4"
+                  required
+                />
+              </div>
+              <div>
+                <label for="capacity" data-i="capacity">1卓の上限</label
+                ><input
+                  id="capacity"
+                  type="number"
+                  min="1"
+                  max="24"
+                  value="3"
+                  required
+                />
+              </div>
+            </div>
+            <details>
+              <summary data-i="constraints">条件・欠席・再現性</summary>
+              <label for="apart" data-i="apart"
+                >同席させないペア（P01,P02 形式で1行ずつ）</label
+              ><textarea
+                id="apart"
+                rows="3"
+                placeholder="P01,P02"
+                spellcheck="false"
+              ></textarea
+              ><label for="absences" data-i="absences"
+                >今後の欠席（P09:3 → 第3回以降欠席）</label
+              ><textarea
+                id="absences"
+                rows="3"
+                placeholder="P09:3"
+                spellcheck="false"
+              ></textarea>
+              <p class="small muted" data-i="futureOnly">
+                新しい条件は未確定の回だけに適用。過去の同席と出席は変えません。
+              </p>
+              <div class="field-row">
+                <div>
+                  <label for="seed" data-i="seed">乱数シード</label
+                  ><input
+                    id="seed"
+                    type="number"
+                    min="0"
+                    max="4294967295"
+                    value="42"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="budget" data-i="budget">探索回数上限</label
+                  ><input
+                    id="budget"
+                    type="number"
+                    min="1"
+                    max="250000"
+                    value="20000"
+                    required
+                  />
+                </div>
+              </div>
+            </details>
+            <div class="run-actions">
+              <button
+                id="generate"
+                class="primary"
+                type="submit"
+                data-i="generate"
+              >
+                プランをつくる ↗</button
+              ><button
+                id="cancel"
+                type="button"
+                class="quiet"
+                hidden
+                data-i="cancel"
+              >
+                中止
+              </button>
+            </div>
+          </form>
+          <div class="import-row">
+            <button id="sample" class="text-button" data-i="sample">
+              サンプルに戻す</button
+            ><label
+              class="text-button file-label"
+              for="import-file"
+              data-i="import"
+              >JSONを読み込む</label
+            ><input
+              type="file"
+              id="import-file"
+              accept=".json,application/json"
+            />
+          </div>
+          <p
+            id="status"
+            role="status"
+            aria-live="polite"
+            class="status"
+            data-i="ready"
+          >
+            準備できました。まずは9人のサンプルで試せます。
+          </p>
+          <div id="history-box" class="history-box" hidden>
+            <strong id="history-title"></strong>
+            <p class="small" data-i="historyHint">
+              参加者ラベルと卓数は過去の記録と一致させてください。
+            </p>
+            <button id="reset-history" class="quiet" data-i="resetHistory">
+              確定履歴を解除
+            </button>
+          </div>
+        </section>
+        <section class="results" aria-labelledby="results-title">
+          <div class="section-label">02 / PLAN & AUDIT</div>
+          <div class="result-title">
+            <h2 id="results-title" data-i="resultTitle">出会いの見取り図</h2>
+            <span class="best-badge" id="best-badge" hidden data-i="best"
+              >探索内の最良案</span
+            >
+          </div>
+          <div id="empty" class="empty">
+            <span aria-hidden="true">↗</span>
+            <h3 data-i="emptyTitle">次のつながりは、ここから。</h3>
+            <p data-i="emptyText">
+              条件を入れてプランを作成。席順、個人ルート、同席回数をまとめて確認できます。
+            </p>
+            <p class="small" data-i="honesty">
+              最適性の保証はありません。探索上限に達しても「不可能」とは判定しません。
+            </p>
+          </div>
+          <div id="output" hidden>
+            <div class="stats" id="stats"></div>
+            <p class="small muted" id="audit-note"></p>
+            <div class="freeze-bar">
+              <div>
+                <label for="freeze-count" data-i="freeze"
+                  >終了したラウンドを確定</label
+                ><select id="freeze-count"></select>
+              </div>
+              <button id="freeze" class="quiet" data-i="freezeButton">
+                ここまで固定
+              </button>
+            </div>
+            <div id="round-cards" class="round-cards"></div>
+            <details class="audit-section">
+              <summary data-i="matrixTitle">
+                同席マトリクス・個人ごとの集計
+              </summary>
+              <div
+                class="table-scroll"
+                tabindex="0"
+                role="region"
+                aria-label="Encounter matrix"
+              >
+                <table id="matrix"></table>
+              </div>
+              <ul id="person-audit" class="person-audit"></ul>
+            </details>
+            <details class="audit-section">
+              <summary data-i="routesTitle">個人ルートカード</summary>
+              <div id="route-cards" class="route-cards"></div>
+            </details>
+            <div class="exports">
+              <h3 data-i="exportTitle">持ち出す・引き継ぐ</h3>
+              <div class="export-buttons">
+                <button id="download-json" class="quiet">JSON</button
+                ><button id="download-tables" class="quiet" data-i="tableCSV">
+                  席表 CSV</button
+                ><button id="download-routes" class="quiet" data-i="routeCSV">
+                  ルート CSV</button
+                ><button id="download-matrix" class="quiet" data-i="matrixCSV">
+                  同席 CSV</button
+                ><button id="download-print" class="quiet" data-i="printHTML">
+                  印刷用 HTML</button
+                ><button id="print" class="quiet" data-i="print">
+                  席表・ルートを印刷
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section class="principles">
+        <div>
+          <span>01</span>
+          <h3 data-i="principle1">履歴を消さない</h3>
+          <p data-i="principleText1">
+            終了した回を固定し、残りだけを再計画。欠席が出ても、過去の出会いはそのまま。
+          </p>
+        </div>
+        <div>
+          <span>02</span>
+          <h3 data-i="principle2">結果を確かめる</h3>
+          <p data-i="principleText2">
+            探索とは別の検証器で、参加漏れ・重複・席数・条件を確認。同席の繰り返しも表示。
+          </p>
+        </div>
+        <div>
+          <span>03</span>
+          <h3 data-i="principle3">小さく、手元で</h3>
+          <p data-i="principleText3">
+            すべての計算はこのブラウザ内。個人情報や大規模イベントの運営には使用しないでください。
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <strong>Round Loom</strong
+      ><span data-i="footer">ローカル試作 · 需要・新規性は未検証 · v0.1.0</span>
+    </footer>
+  </body>
+</html>
