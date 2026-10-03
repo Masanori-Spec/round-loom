@@ -28,4 +28,4 @@ Compare task completion time, correction errors, and comprehension of “best fo
 
 ## Portfolio evidence
 
-The technical demonstration is bounded optimization with an independent validation boundary, exact historical state preservation, deterministic reproduction, safe local imports/exports, and UI concurrency cancellation. A portfolio presentation should show both the successful synthetic examples and the unexecuted-browser verification gap until CI or a permitted browser run supplies actual evidence.
+The technical demonstration is bounded optimization with an independent validation boundary, exact historical state preservation, deterministic reproduction, safe local imports/exports, and UI concurrency cancellation. A portfolio presentation should show the successful synthetic examples, the independent oracle, and the exact hosted CI/browser evidence in [the verification report](VERIFICATION.md). The initial local browser attempt was blocked; later sandboxed CI passed. Neither the synthetic test suite nor the screenshots validate customer demand, novel functionality, or general optimality.

@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "testsRun": 13,
+  "sandbox": true,
+  "results": [
+    {
+      "name": "Japanese and English interface, keyboard skip link",
+      "status": "passed"
+    },
+    {
+      "name": "Generate sample and validate JSON download",
+      "status": "passed"
+    },
+    {
+      "name": "Repeated generation is deterministic",
+      "status": "passed"
+    },
+    {
+      "name": "Freeze 2, absent P09 from 3, preserve history",
+      "status": "passed"
+    },
+    {
+      "name": "All download formats, absent personal route, print view",
+      "status": "passed"
+    },
+    {
+      "name": "Editing invalidates export and cancellation cannot resurrect stale results",
+      "status": "passed"
+    },
+    {
+      "name": "Malformed import hides previous export and repeat import recovers",
+      "status": "passed"
+    },
+    {
+      "name": "Oversized import rejected; duplicate attendee import rejected",
+      "status": "passed"
+    },
+    {
+      "name": "Contradiction differs from budget exhaustion",
+      "status": "passed"
+    },
+    {
+      "name": "Hostile labels render only as text and safe spreadsheet data",
+      "status": "passed"
+    },
+    {
+      "name": "Imported comma labels and constraints survive UI round-trip",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile 390 px has no document overflow and remains usable",
+      "status": "passed"
+    },
+    {
+      "name": "Reload clears transient state; no external network or page errors",
+      "status": "passed"
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

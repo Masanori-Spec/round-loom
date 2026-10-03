@@ -80,9 +80,30 @@ npm run test:browser
 npm run package
 ```
 
-Local unit/CLI checks: **30 passing** on Node 24.19.0 after independent review. Browser suite: **13 scenarios prepared, zero run locally**; sandbox-enabled Chromium launch was blocked by the container's socket/ptrace permissions. This is a verification gap, not a pass. No sandbox bypass was used. The 30 tests include an independent exhaustive oracle over 1,088 small keep-apart graphs, 100 seeded larger cases, all 256 four-person absence-onset patterns, sparse-array regressions, and bounded regular-file CLI input. See [verification report](docs/VERIFICATION.md).
+Verified at source commit [`c31ab9a`](https://github.com/Masanori-Spec/round-loom/commit/c31ab9a1c6b6cf3d0254b029364526ac9ced96f3): **30 tests passed in all four Node 22/24 × UTC/Asia/Tokyo CI jobs**, plus **13 browser scenarios passed with the Chromium sandbox enabled**. [View the successful CI run](https://github.com/Masanori-Spec/round-loom/actions/runs/37141006704). The browser report records no page errors or external requests.
 
-CI is configured for unit tests on Node 22 and 24 in UTC and Asia/Tokyo, plus sandbox-enabled Chromium on `ubuntu-22.04`. CI has not been run as part of local implementation. The temporary Ubuntu 22.04 runner baseline is scheduled to retire April 17, 2027; migrate and reverify before then. See [runner image policy](https://github.com/actions/runner-images#available-images).
+The 30 tests include an independent exhaustive oracle over 1,088 small keep-apart graphs, 100 seeded larger cases, all 256 four-person absence-onset patterns, sparse-array regressions, and bounded regular-file CLI input. Desktop, 390 px mobile, and both A4 print pages were visually reviewed; no clipping was observed in those artifacts. See the [verification report](docs/VERIFICATION.md), [browser results](docs/evidence/browser-results.json), [artifact provenance](docs/evidence/provenance.json), and [print sample](docs/evidence/print.pdf).
+
+The initial local browser attempt was blocked by this workspace's socket/ptrace restrictions before any scenario ran. It remains recorded separately in [local browser history](docs/LOCAL_BROWSER_HISTORY.md); the later sandboxed CI pass is separate evidence, not a reclassification of that blocked run.
+
+Known cosmetic limitation: an already displayed status notice keeps its original language after switching Japanese/English, and table labels in personal routes remain English. The planning data and exports are unaffected. Real facilitator usability and demand remain untested.
+
+CI uses `ubuntu-22.04` for sandboxed Chromium. That temporary runner baseline is scheduled to retire April 17, 2027; migrate and reverify before then. See [runner image policy](https://github.com/actions/runner-images#available-images).
+
+## Screenshots from the verified CI run
+
+Desktop sample: nine anonymous labels, four rounds, 36 unique pairs and zero repeat encounters for seed 42. This example does not imply every input admits a zero-repeat plan.
+
+![Round Loom desktop plan with synthetic labels](docs/screenshots/desktop.png)
+
+<details>
+<summary>390 px mobile screenshot</summary>
+
+The Japanese view retains the known English status and table-label text described above.
+
+<img src="docs/screenshots/mobile.png" width="390" alt="Round Loom mobile plan using synthetic labels, showing its Japanese view and known untranslated status/table text">
+
+</details>
 
 ## Portfolio and product context
 

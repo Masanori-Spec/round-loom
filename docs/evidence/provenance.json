@@ -1,0 +1,63 @@
+{
+  "repository": "https://github.com/Masanori-Spec/round-loom",
+  "commit": "c31ab9a1c6b6cf3d0254b029364526ac9ced96f3",
+  "runId": 37141006704,
+  "runUrl": "https://github.com/Masanori-Spec/round-loom/actions/runs/37141006704",
+  "artifactId": 11280341899,
+  "artifactName": "round-loom-browser-evidence",
+  "artifactArchiveBytes": 462692,
+  "artifactArchiveSha256": "5c4d9bf66a9e9b413589e1f3f1c83f21cdbb192b6cf6483cf77c57f88e9aa104",
+  "artifactDigestVerification": "Downloaded official archive SHA-256 matched GitHub metadata before extraction",
+  "artifactCreatedAt": "2026-10-03T17:35:03Z",
+  "unitMatrix": {
+    "nodeVersions": [
+      22,
+      24
+    ],
+    "timezones": [
+      "UTC",
+      "Asia/Tokyo"
+    ],
+    "successfulJobs": 4,
+    "testsPerJob": 30
+  },
+  "browser": {
+    "status": "passed",
+    "scenarios": 13,
+    "sandbox": true,
+    "pageErrors": [],
+    "externalRequests": []
+  },
+  "visualReview": {
+    "desktop": "readable; no clipping observed",
+    "mobile": "390 px; no document overflow; readable",
+    "print": "both A4 pages reviewed; tables and route cards readable; P09 absent in rounds 3 and 4 visible"
+  },
+  "knownLimitations": [
+    "Existing status notice retains its original language after a language toggle",
+    "Route destinations and table headings retain English Table labels in the Japanese view"
+  ],
+  "files": [
+    {
+      "artifactPath": "desktop.png",
+      "bytes": 208516,
+      "sha256": "ea133e8ca514e67837ea9ca694e604509a53dc04449ba09799fc47dbd8c9d1e9"
+    },
+    {
+      "artifactPath": "mobile.png",
+      "bytes": 244834,
+      "sha256": "fc9ef80670f43f3466447a1eece1216aec3e51540fb67a9170673e7a6d4a150b"
+    },
+    {
+      "artifactPath": "print.pdf",
+      "bytes": 48838,
+      "sha256": "86a28cedf496005bacf550593792521fd78c9565bd6ccdf2eff042935738d990"
+    },
+    {
+      "artifactPath": "results.json",
+      "bytes": 1567,
+      "sha256": "c400eeec309ba932f404e8c96d197a7fe6ccf3b69a06ccdb0879ec3c77254558"
+    }
+  ],
+  "scope": "Evidence for the named source commit; documentation-only follow-through preserves runtime and test source unchanged. This is not a production, usability, demand, or novelty certification."
+}
